@@ -1,0 +1,45 @@
+<div class="course-detail-container">
+  <div *ngIf="course; else notFound" class="course-detail-card">
+    <h2>{{ course.name }}</h2>
+    <hr class="divider">
+    <div class="detail-info">
+      <p><strong>Course Code:</strong> {{ course.code }}</p>
+      <p><strong>Credits:</strong> {{ course.credits }} Credits</p>
+      <p><strong>Current Grade Status:</strong> 
+        <span class="badge" [ngClass]="{
+          'badge--passed': course.gradeStatus === 'passed',
+          'badge--failed': course.gradeStatus === 'failed',
+          'badge--pending': course.gradeStatus === 'pending'
+        }">{{ course.gradeStatus | titlecase }}</span>
+      </p>
+      <p class="description">
+        This is the detailed information page for {{ course.name }} ({{ course.code }}). 
+        This course carries {{ course.credits }} credits and is evaluated with a status of {{ course.gradeStatus }}.
+      </p>
+
+      <hr class="divider">
+
+      <!-- Enrolled Students (switchMap chain demo) -->
+      <div class="enrolled-students">
+        <h4>Enrolled Students (switchMap Chaining Demo)</h4>
+        <ul *ngIf="enrolledStudents.length > 0; else noStudents">
+          <li *ngFor="let student of enrolledStudents">{{ student.name }} (ID: {{ student.id }})</li>
+        </ul>
+        <ng-template #noStudents>
+          <p class="no-students-msg">No students enrolled in this course.</p>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #notFound>
+    <div class="not-found-card">
+      <h2>Course Not Found</h2>
+      <p>The requested course could not be loaded. It may have been removed or does not exist.</p>
+    </div>
+  </ng-template>
+
+  <div class="actions">
+    <a routerLink="/courses" class="btn btn-secondary">Back to Course List</a>
+  </div>
+</div>

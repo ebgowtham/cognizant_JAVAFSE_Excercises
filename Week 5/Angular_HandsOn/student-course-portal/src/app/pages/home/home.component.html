@@ -1,0 +1,59 @@
+<div class="home-container">
+  <!-- Interpolation -->
+  <h1>Welcome to {{ portalName }}</h1>
+  
+  <p class="description">
+    This portal allows students to view their profile, browse and enroll in courses, check grades, and receive notifications.
+  </p>
+
+  <!-- Stats Row -->
+  <div class="stats-row">
+    <div class="stat-card">
+      <span class="stat-val">{{ stats.coursesAvailable }}</span>
+      <span class="stat-label">Courses Available</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-val">{{ stats.enrolled }}</span>
+      <span class="stat-label">Enrolled</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-val">{{ stats.gpa }}</span>
+      <span class="stat-label">GPA</span>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Interactive Area -->
+  <div class="interactive-section">
+    <h3>Enrollment Actions</h3>
+    <!-- Property and Event Binding -->
+    <button [disabled]="!isPortalActive" (click)="onEnrollClick()" class="btn btn-primary">Enroll Now</button>
+    <p class="enroll-message" *ngIf="message">{{ message }}</p>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Two-Way Binding -->
+  <div class="search-section">
+    <h3>Quick Search</h3>
+    <input type="text" [(ngModel)]="searchTerm" placeholder="Type to search courses..." class="search-input">
+    <p class="search-output">Searching for: <strong>{{ searchTerm }}</strong></p>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Service Demonstration Section -->
+  <div class="services-demo-section">
+    <h3>Dependency Injection & Services Demonstration</h3>
+    <div class="demo-grid">
+      <app-course-summary-widget></app-course-summary-widget>
+      
+      <!-- Testing scoped provider by rendering two instances side-by-side -->
+      <div class="notifications-demo">
+        <app-notification></app-notification>
+        <app-notification></app-notification>
+      </div>
+    </div>
+  </div>
+</div>

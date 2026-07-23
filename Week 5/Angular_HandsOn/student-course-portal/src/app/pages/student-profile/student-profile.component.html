@@ -1,0 +1,30 @@
+<div class="profile-container">
+  <h2>Student Profile</h2>
+  
+  <div class="profile-details">
+    <p><strong>Name:</strong> {{ student.name }}</p>
+    <p><strong>Email:</strong> {{ student.email }}</p>
+    <p><strong>Student ID:</strong> {{ student.id }}</p>
+  </div>
+
+  <hr class="divider">
+
+  <div class="enrolled-courses-section">
+    <h3>My Enrolled Courses</h3>
+    <div *ngIf="enrolledCourses$ | async as enrolledCourses">
+      <div *ngIf="enrolledCourses.length > 0; else noEnrolls" class="courses-list">
+        <div *ngFor="let course of enrolledCourses" class="enrolled-course-item">
+          <div class="course-info">
+            <span class="course-title">{{ course.name }}</span>
+            <span class="course-code-badge">{{ course.code }}</span>
+          </div>
+          <span class="course-credits">{{ course.credits }} Credits</span>
+        </div>
+      </div>
+    </div>
+    
+    <ng-template #noEnrolls>
+      <p class="no-courses-msg">You have not enrolled in any courses yet. Go to <a routerLink="/courses">Courses</a> to find and register for courses!</p>
+    </ng-template>
+  </div>
+</div>

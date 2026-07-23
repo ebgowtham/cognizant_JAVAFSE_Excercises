@@ -1,0 +1,44 @@
+.notification-container {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 12px;
+  background-color: #fafafa;
+  margin: 10px 0;
+  max-width: 350px;
+}
+
+.notification-container h4 {
+  margin: 0 0 10px 0;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.notify-input-group {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.notify-input {
+  flex: 1;
+  padding: 4px 8px;
+  font-size: 0.85rem;
+}
+
+.notify-list {
+  padding-left: 15px;
+  margin: 0;
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.notify-item {
+  margin-bottom: 4px;
+}
+
+.notify-empty {
+  list-style: none;
+  margin-left: -15px;
+  color: #888;
+  font-style: italic;
+}

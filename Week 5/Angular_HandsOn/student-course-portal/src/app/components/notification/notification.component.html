@@ -1,0 +1,11 @@
+<div class="notification-container">
+  <h4>Component-Scoped Notifications</h4>
+  <div class="notify-input-group">
+    <input #notifyInput type="text" placeholder="Type message..." class="form-control notify-input">
+    <button (click)="addNotification(notifyInput.value); notifyInput.value=''" class="btn btn-secondary btn-sm">Add</button>
+  </div>
+  <ul class="notify-list">
+    <li *ngFor="let note of notificationService.getNotifications()" class="notify-item">{{ note }}</li>
+    <li *ngIf="notificationService.getNotifications().length === 0" class="notify-empty">No local notifications.</li>
+  </ul>
+</div>

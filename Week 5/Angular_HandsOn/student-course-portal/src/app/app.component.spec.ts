@@ -1,0 +1,28 @@
+import { TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { AppComponent } from './app.component';
+import { provideMockStore } from '@ngrx/store/testing';
+import { LoadingService } from './services/loading.service';
+import { BehaviorSubject } from 'rxjs';
+
+describe('AppComponent', () => {
+  const mockLoadingService = {
+    isLoading$: new BehaviorSubject<boolean>(false)
+  };
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [AppComponent, RouterTestingModule],
+      providers: [
+        provideMockStore(),
+        { provide: LoadingService, useValue: mockLoadingService }
+      ]
+    }).compileComponents();
+  });
+
+  it('should create the app', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    expect(app).toBeTruthy();
+  });
+});

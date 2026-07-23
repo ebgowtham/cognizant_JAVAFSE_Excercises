@@ -1,0 +1,50 @@
+<div class="course-list-container">
+  <h2>Available Courses</h2>
+
+  <!-- Search Filter Input -->
+  <div class="search-filter-box">
+    <input 
+      type="text" 
+      [(ngModel)]="searchTerm" 
+      (ngModelChange)="onSearchChange()" 
+      placeholder="Search by course name or code..." 
+      class="form-control search-field">
+  </div>
+
+  <!-- Error Message -->
+  <div *ngIf="errorMessage" class="error-state">
+    <p class="error-msg">{{ errorMessage }}</p>
+  </div>
+
+  <!-- Loading Message -->
+  <div *ngIf="isLoading && !errorMessage; else content" class="loading-state">
+    <p>Loading courses...</p>
+  </div>
+
+  <!-- Course Content Template -->
+  <ng-template #content>
+    <div *ngIf="filteredCourses$ | async as filteredCourses">
+      <div *ngIf="filteredCourses.length > 0; else noCourses" class="course-grid">
+        <!-- ngFor with trackBy and input highlight directive -->
+        <app-course-card 
+          *ngFor="let course of filteredCourses; trackBy: trackByCourseId"
+          [course]="course"
+          (enrollRequested)="onEnroll($event)"
+          [appHighlight]="'#fffde7'">
+        </app-course-card>
+      </div>
+    </div>
+  </ng-template>
+
+  <!-- Empty state template -->
+  <ng-template #noCourses>
+    <div class="empty-state">
+      <p>No courses available.</p>
+    </div>
+  </ng-template>
+
+  <!-- Selected Course Display -->
+  <div *ngIf="selectedCourseId" class="selection-display">
+    <p>Selected course ID: <strong>{{ selectedCourseId }}</strong></p>
+  </div>
+</div>

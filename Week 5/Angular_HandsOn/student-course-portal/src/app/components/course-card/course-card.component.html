@@ -1,0 +1,39 @@
+<div class="course-card" 
+     [ngClass]="cardClasses" 
+     [class.card--enrolled]="(enrolledIds$ | async)?.includes(course.id)"
+     [ngStyle]="{ 'border-left': '6px solid ' + (course.gradeStatus === 'passed' ? 'green' : course.gradeStatus === 'failed' ? 'red' : 'grey') }" 
+     (click)="onCardClick($event)">
+  <div class="card-header">
+    <h3>{{ course.name }}</h3>
+    <span class="course-code">{{ course.code }}</span>
+  </div>
+
+  <div class="card-body">
+    <p class="credits-label">Credits: {{ course.credits | creditLabel }}</p>
+    
+    <!-- Grade Status Badge using *ngSwitch -->
+    <div [ngSwitch]="course.gradeStatus" class="badge-container">
+      <span *ngSwitchCase="'passed'" class="badge badge--passed">Passed</span>
+      <span *ngSwitchCase="'failed'" class="badge badge--failed">Failed</span>
+      <span *ngSwitchCase="'pending'" class="badge badge--pending">Pending</span>
+      <span *ngSwitchDefault class="badge badge--unknown">Unknown</span>
+    </div>
+
+    <!-- Toggleable details section -->
+    <div *ngIf="isExpanded" class="details-section">
+      <p class="detail-text">Detailed description: This course covers comprehensive aspects of {{ course.name }} ({{ course.code }}). It carries {{ course.credits }} academic credits.</p>
+    </div>
+  </div>
+
+  <div class="card-actions">
+    <button (click)="toggleDetails()" class="btn btn-secondary btn-sm">
+      {{ isExpanded ? 'Hide Details' : 'Show Details' }}
+    </button>
+    <button 
+      (click)="onEnrollClick()" 
+      class="btn btn-sm" 
+      [ngClass]="((enrolledIds$ | async)?.includes(course.id)) ? 'btn-danger' : 'btn-success'">
+      {{ (enrolledIds$ | async)?.includes(course.id) ? 'Unenroll' : 'Enroll' }}
+    </button>
+  </div>
+</div>

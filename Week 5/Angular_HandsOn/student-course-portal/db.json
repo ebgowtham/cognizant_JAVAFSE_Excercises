@@ -1,0 +1,15 @@
+{
+  "courses": [
+    { "id": 101, "name": "Introduction to Angular", "code": "CS101", "credits": 3, "gradeStatus": "passed" },
+    { "id": 102, "name": "Advanced TypeScript", "code": "CS102", "credits": 4, "gradeStatus": "pending" },
+    { "id": 103, "name": "State Management with NgRx", "code": "CS103", "credits": 4, "gradeStatus": "pending" },
+    { "id": 104, "name": "Web Security Fundamentals", "code": "CS104", "credits": 2, "gradeStatus": "failed" },
+    { "id": 105, "name": "Software Architecture Patterns", "code": "CS105", "credits": 5, "gradeStatus": "passed" }
+  ],
+  "students": [
+    { "id": 1, "name": "Alice Smith", "courseId": 101 },
+    { "id": 2, "name": "Bob Jones", "courseId": 101 },
+    { "id": 3, "name": "Charlie Brown", "courseId": 102 }
+  ],
+  "enrollments": []
+}
